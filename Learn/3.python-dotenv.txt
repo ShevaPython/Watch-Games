@@ -1,0 +1,15 @@
+Python-dotenv считывает пары ключ-значение из .envфайла и может устанавливать их как переменные среды. Это помогает
+в разработке приложений в соответствии с принципами 12 факторов .
+
+1. -pip install python-dotenv
+2.создаем папку например config.py
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+# SECRET_KEY project django
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+3.Создаем файл .env
+SECRET_KEY=мой секретный ключ
