@@ -1,3 +1,33 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Genre, Game, Developer, Publisher, Peculiarities, Reviews
+
+
+@admin.register(Peculiarities)
+class ModelNameAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Game)
+class GameAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Developer)
+class DeveloperAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Publisher)
+class PublisherAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Reviews)
+class ReviewsAdmin(admin.ModelAdmin):
+    pass

@@ -1,0 +1,15 @@
+1.В нашем основном приложении мы прописываем путь к нашему приложению drf в файле urls.py
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api-auth/',include('rest_framework.urls')), --- путь к drf
+    path('api/v1/',include('games.urls'))  --- говорим что бы он искал путь в нашем приложении!!
+
+2.Прописываем url adress перед этим мы создаем urls.py пайтон файл для нашего приложения!!!и в нем прописываем
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('games/',views.GameListView.as_view()),
+    path('game/<int:pk>/',views.GameDitailView.as_view())
+
+]
+

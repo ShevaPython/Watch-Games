@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
+
+from django.conf import settings
+
 from config import SECRET_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -78,7 +81,7 @@ WSGI_APPLICATION = 'WatchGames.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': settings.BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -103,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
@@ -121,7 +124,10 @@ STATICFILES_DIRS=[STATIC_DIR]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# ...
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Используйте правильный путь к BigAutoField
+
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

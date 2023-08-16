@@ -1,0 +1,23 @@
+Представления для наших моделей с сериализацией!
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Game
+from .serializer import GameListSerializer,GameDitailSerialiser
+
+APIView --- главный класс в drf от него унаследуються все остальные!,он основан на классе DjangoView!
+class GameListView(APIView):
+    """Вывод списков фильмов"""
+
+    def get(self, request):   ---метот get
+        games = Game.objects.all()     ---что мы ходим забрать и показать из нашей бд
+        serialiser = GameListSerializer(games, many=True)    ---сериализация с помощью нашего сериализатора,many=True много записей
+        return Response(serialiser.data)
+
+class GameDitailView(APIView):
+    """Полное описанние фильма"""
+
+    def get(self, request,pk): --- метот get  с передачей pk --первичный ключ по которому будет искаться запись из бд!
+        game = Game.objects.get(id=pk)   --- поиск в бд по переданому pk с запроса!
+        serialiser = GameDitailSerialiser(game)
+        return Response(serialiser.data)
