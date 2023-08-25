@@ -1,7 +1,14 @@
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Game
-from .serializer import GameListSerializer, GameDitailSerializer, ReviewCreateSerializer
+from .models import Game, Developer, Publisher
+from .serializer import (GameListSerializer,
+                         GameDitailSerializer,
+                         ReviewCreateSerializer,
+                         DeveloperListSerializer,
+                         PublisherListSerializer,
+                         PublisherDitailSerializer,
+                         DeveloperDitailSerializer)
 
 
 class GameListView(APIView):
@@ -30,3 +37,27 @@ class ReviewCreateView(APIView):
         if rewiew.is_valid():
             rewiew.save()
         return Response(status=201)
+
+
+class DeveloperListView(generics.ListAPIView):
+    """Вывод разработчиков"""
+    queryset = Developer.objects.all()
+    serializer_class = DeveloperListSerializer
+
+
+class PublisherListView(generics.ListAPIView):
+    """Вывод публикантов"""
+    queryset = Publisher.objects.all()
+    serializer_class = PublisherListSerializer
+
+
+class DeveloperDetailListView(generics.RetrieveAPIView):
+    """Вывод разработчика"""
+    queryset = Developer.objects.all()
+    serializer_class = DeveloperDitailSerializer
+
+
+class PublisherDetailListView(generics.RetrieveAPIView):
+    """Вывод публиканта"""
+    queryset = Developer.objects.all()
+    serializer_class = PublisherDitailSerializer
