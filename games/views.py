@@ -1,7 +1,5 @@
-from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Game, Developer, Publisher
+from rest_framework import generics,permissions
+from .models import Game, Developer, Publisher, Reviews
 from .serializer import (GameListSerializer,
                          GameDitailSerializer,
                          ReviewCreateSerializer,
@@ -11,53 +9,64 @@ from .serializer import (GameListSerializer,
                          DeveloperDitailSerializer)
 
 
-class GameListView(APIView):
+class GameListView(generics.ListAPIView):
     """Вывод списков фильмов"""
 
-    def get(self, request):
-        games = Game.objects.all()
-        serialiser = GameListSerializer(games, many=True)
-        return Response(serialiser.data)
+    queryset = Game.objects.all()
+    serializer_class = GameListSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
-class GameDitailView(APIView):
+class GameDitailView(generics.RetrieveAPIView):
     """Полное описанние фильмов"""
+    queryset = Game.objects.all()
+    serializer_class = GameDitailSerializer
+    lookup_field = 'pk'
+    permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, pk):
-        game = Game.objects.get(id=pk)
-        serialiser = GameDitailSerializer(game)
-        return Response(serialiser.data)
 
-
-class ReviewCreateView(APIView):
+class ReviewCreateView(generics.ListCreateAPIView):
     """Добавления коментапия к Игре"""
+    queryset = Reviews.objects.all()
+    serializer_class = ReviewCreateSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request):
-        rewiew = ReviewCreateSerializer(data=request.data)
-        if rewiew.is_valid():
-            rewiew.save()
-        return Response(status=201)
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class ReviewListView(generics.ListAPIView):
+    queryset = Reviews.objects.all()
+    serializer_class = PublisherListSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class DeveloperListView(generics.ListAPIView):
     """Вывод разработчиков"""
     queryset = Developer.objects.all()
     serializer_class = DeveloperListSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class PublisherListView(generics.ListAPIView):
     """Вывод публикантов"""
     queryset = Publisher.objects.all()
     serializer_class = PublisherListSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class DeveloperDetailListView(generics.RetrieveAPIView):
     """Вывод разработчика"""
     queryset = Developer.objects.all()
     serializer_class = DeveloperDitailSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class PublisherDetailListView(generics.RetrieveAPIView):
     """Вывод публиканта"""
     queryset = Developer.objects.all()
     serializer_class = PublisherDitailSerializer
+    permission_classes = [permissions.IsAuthenticated]

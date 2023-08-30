@@ -85,4 +85,4 @@ class GameDitailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Game
-        exclude = ('url',)
+        fields = '__all__'
