@@ -1,4 +1,4 @@
-from rest_framework import generics,permissions
+from rest_framework import generics, permissions, viewsets
 from .models import Game, Developer, Publisher, Reviews
 from .serializer import (GameListSerializer,
                          GameDitailSerializer,
@@ -8,21 +8,18 @@ from .serializer import (GameListSerializer,
                          PublisherDitailSerializer,
                          DeveloperDitailSerializer)
 
+from .permissions import IsAdminOrIsAuthenticated
 
-class GameListView(generics.ListAPIView):
-    """Вывод списков фильмов"""
 
+class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAdminOrIsAuthenticated]
 
-
-class GameDitailView(generics.RetrieveAPIView):
-    """Полное описанние фильмов"""
-    queryset = Game.objects.all()
-    serializer_class = GameDitailSerializer
-    lookup_field = 'pk'
-    permission_classes = [permissions.IsAuthenticated]
+    def get_serializer_class(self):
+        if self.action == 'retrieve':  # Если это запрос на детали
+            return GameDitailSerializer # Используем другой сериализатор
+        return super().get_serializer_class()  # В противном случае используем сериализатор для списка
 
 
 class ReviewCreateView(generics.ListCreateAPIView):
