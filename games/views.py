@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, viewsets
+from rest_framework import viewsets
 from .models import Game, Developer, Publisher, Reviews
 from .serializer import (GameListSerializer,
                          GameDitailSerializer,
@@ -6,7 +6,8 @@ from .serializer import (GameListSerializer,
                          DeveloperListSerializer,
                          PublisherListSerializer,
                          PublisherDitailSerializer,
-                         DeveloperDitailSerializer)
+                         DeveloperDitailSerializer,
+                         ReviewSerializer)
 
 from .permissions import IsAdminOrIsAuthenticated
 
@@ -18,52 +19,40 @@ class GameViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'retrieve':  # Если это запрос на детали
-            return GameDitailSerializer # Используем другой сериализатор
+            return GameDitailSerializer  # Используем другой сериализатор
         return super().get_serializer_class()  # В противном случае используем сериализатор для списка
 
 
-class ReviewCreateView(generics.ListCreateAPIView):
-    """Добавления коментапия к Игре"""
+class ReviewViewSet(viewsets.ModelViewSet):
+    """Отзывы"""
     queryset = Reviews.objects.all()
-    serializer_class = ReviewCreateSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAdminOrIsAuthenticated]
 
-    def perform_create(self, serializer):
-        serializer.save()
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-class ReviewListView(generics.ListAPIView):
-    queryset = Reviews.objects.all()
-    serializer_class = PublisherListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return ReviewCreateSerializer
+        return super().get_serializer_class()
 
 
-class DeveloperListView(generics.ListAPIView):
-    """Вывод разработчиков"""
+class DeveloperViewSet(viewsets.ModelViewSet):
+    """Разработчики"""
     queryset = Developer.objects.all()
     serializer_class = DeveloperListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAdminOrIsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return DeveloperDitailSerializer
+        return super().get_serializer_class()
 
 
-class PublisherListView(generics.ListAPIView):
-    """Вывод публикантов"""
+class PublisherViewSet(viewsets.ModelViewSet):
+    """Издатели"""
     queryset = Publisher.objects.all()
     serializer_class = PublisherListSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
-
-class DeveloperDetailListView(generics.RetrieveAPIView):
-    """Вывод разработчика"""
-    queryset = Developer.objects.all()
-    serializer_class = DeveloperDitailSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class PublisherDetailListView(generics.RetrieveAPIView):
-    """Вывод публиканта"""
-    queryset = Developer.objects.all()
-    serializer_class = PublisherDitailSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return PublisherDitailSerializer
+        return super().get_serializer_class()

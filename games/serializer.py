@@ -26,13 +26,13 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    '''Добавления отзыва'''
+    ''' List отзыва'''
     children = RecursiveSwrializator(many=True)
 
     class Meta:
         list_serializer_class = FilterReviewListSerializer
         model = Reviews
-        fields = ('name', 'text', 'children')
+        fields = ('id','name', 'text', 'children')
 
 
 class DeveloperListSerializer(serializers.ModelSerializer):
