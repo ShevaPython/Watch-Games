@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  django-api-watchgames:
+    build: .
+    container_name: django-project
+    ports:
+      - '8000:8000'
+    restart: unless-stopped
+    env_file:
+      - .env
