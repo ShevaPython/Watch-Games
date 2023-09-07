@@ -89,3 +89,16 @@ class Reviews(models.Model):
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+
+
+class PremierMatches(models.Model):
+    game = models.CharField(max_length=200,verbose_name='Название премьеры игры')
+    photo = models.TextField()
+    href_premier = models.TextField()
+
+    def __str__(self):
+        return F'{self.game}' or ""
+
+    class Meta:
+        verbose_name = 'Премьера матча'
+        verbose_name_plural = 'Премьеры матчей'

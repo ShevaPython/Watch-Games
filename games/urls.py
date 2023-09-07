@@ -1,15 +1,7 @@
 from django.urls import path
-from rest_framework import routers
-from django.urls import include
-from .views import GameViewSet, ReviewViewSet, DeveloperViewSet, PublisherViewSet
-
-router = routers.DefaultRouter()
-router.register(r'games', GameViewSet)
-router.register(r'reviews', ReviewViewSet)
-router.register(r'developers', DeveloperViewSet)
-router.register(r'publishers', PublisherViewSet)
+from .views import index
 
 urlpatterns = [
-    path('', include(router.urls)),
+  path('',index,name='index')
 
 ]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Game, Reviews, Developer, Publisher
+from games.models import Game, Reviews, Developer, Publisher
 
 
 class FilterReviewListSerializer(serializers.ListSerializer):
@@ -32,7 +32,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         list_serializer_class = FilterReviewListSerializer
         model = Reviews
-        fields = ('id','name', 'text', 'children')
+        fields = ('id', 'name', 'text', 'children')
 
 
 class DeveloperListSerializer(serializers.ModelSerializer):
@@ -43,22 +43,6 @@ class DeveloperListSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class PublisherListSerializer(serializers.ModelSerializer):
-    """Вывод публикантов"""
-
-    class Meta:
-        model = Developer
-        fields = ('id', 'name')
-
-
-class PublisherDitailSerializer(serializers.ModelSerializer):
-    """Вывод публикантa"""
-
-    class Meta:
-        model = Developer
-        fields = '__all__'
-
-
 class DeveloperDitailSerializer(serializers.ModelSerializer):
     """Вывод разработчика"""
 
@@ -67,16 +51,32 @@ class DeveloperDitailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PublisherDitailSerializer(serializers.ModelSerializer):
+    """Вывод публикантa"""
+
+    class Meta:
+        model = Publisher
+        fields = '__all__'
+
+
+class PublisherListSerializer(serializers.ModelSerializer):
+    """Вывод публикантов"""
+
+    class Meta:
+        model = Publisher
+        fields = ('id', 'name')
+
+
 class GameListSerializer(serializers.ModelSerializer):
     '''Список Фильмов'''
 
     class Meta:
         model = Game
-        fields = ('id','name')
+        fields = ('id', 'name')
 
 
 class GameDitailSerializer(serializers.ModelSerializer):
-    '''Детальное описания фильмо'''
+    '''Детальное описания фильма'''
     genres = serializers.SlugRelatedField(slug_field='name', read_only=True, many=True)
     developer = GameListSerializer(read_only=True)
     publisher = PublisherListSerializer(read_only=True)

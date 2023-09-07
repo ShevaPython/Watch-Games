@@ -25,7 +25,8 @@ urlpatterns = [
     path('api-auth/',include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('api/',include('games.urls')),
+    path('api/', include('games.api.urls')),
+    path('',include('games.urls'))
 
 ]
 

@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from .models import Genre, Game, Developer, Publisher, Peculiarities, Reviews
+from .models import Genre, Game, Developer, Publisher, Peculiarities, Reviews, PremierMatches
+
+
+@admin.register(PremierMatches)
+class PremierAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Peculiarities)

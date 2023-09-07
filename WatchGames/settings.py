@@ -28,7 +28,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','127.0.0.1:8000']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '127.0.0.1:8000']
 
 # Application definition
 
@@ -122,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS=[STATIC_DIR]
+STATICFILES_DIRS = [STATIC_DIR]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -130,12 +130,8 @@ STATICFILES_DIRS=[STATIC_DIR]
 # ...
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Используйте правильный путь к BigAutoField
 
-
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -146,9 +142,6 @@ REST_FRAMEWORK = {
     ),
 
 }
-
-
-
 
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
