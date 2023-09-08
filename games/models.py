@@ -59,15 +59,14 @@ class Game(models.Model):
     description = models.TextField('Описание')
     peculiarities = models.ManyToManyField(Peculiarities, related_name='games', blank=True)
     photos = models.TextField(db_index=True)
-    language = models.CharField("Язык", max_length=50)
+    language = models.CharField("Язык", max_length=50, null=True, blank=True)
     genres = models.ManyToManyField(Genre, verbose_name='жанры', related_name='game_genre')
     developer = models.ForeignKey(Developer, on_delete=models.SET_NULL, null=True, blank=True)
     publisher = models.ForeignKey(Publisher, on_delete=models.SET_NULL, null=True, blank=True)
 
+
     def __str__(self):
         return self.name or ''
-
-
 
     class Meta:
         verbose_name = 'Игра'
@@ -92,7 +91,7 @@ class Reviews(models.Model):
 
 
 class PremierMatches(models.Model):
-    game = models.CharField(max_length=200,verbose_name='Название премьеры игры')
+    game = models.CharField(max_length=200, verbose_name='Название премьеры игры')
     photo = models.TextField()
     href_premier = models.TextField()
 
