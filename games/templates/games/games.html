@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<section class="players-section players-page-section">
+		<div class="auto-container">
+			
+			<div class="row clearfix">
+				
+				{% for game in games %}
+				<div class="player-block col-lg-4 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0ms">
+					<div class="inner-box hvr-bob">
+						<div class="image">
+							<a href="#"><img src="{{ game.photos }}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h4><a href="#">{{ game.name}}</a></h4>
+                            <div class="genre">Genres: {{ game.genres.all|join:', ' }}</div>
+                            <div class="genre">Release date : {{ game.data_create }}</div>
+
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+				
+
+				
+			</div>
+			
+		</div>
+
+	</section>
+    {% include 'inc_/pagination.html' %}
+
+{% endblock content %}
+	

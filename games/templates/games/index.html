@@ -7,184 +7,185 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel">
             <!-- Slide Item -->
-                {% for match in data %}
-            <div class="slide-item">
-            	<div class="image-layer" style="background-image:url('{{ match.photo }}')"></div>
+            {% for match in  premier_matches %}
+                <div class="slide-item">
+                    <div class="image-layer" style="background-image:url('{{ match.photo }}')"></div>
 
-                <div class="auto-container">
-                    <div class="content-box">
-                        <h2>the Premier <br> Matches</h2>
-                        <div class="btn-box"><a href="{{ match.href_premier }}" class="theme-btn btn-style-one"><span class="btn-title">{{ match.game }}</span></a></div>
-                    </div>  
+                    <div class="auto-container">
+                        <div class="content-box">
+                            <h2>the Premier <br> Matches</h2>
+                            <div class="btn-box"><a href="{{ match.premiermatches }}"
+                                                    class="theme-btn btn-style-one"><span
+                                    class="btn-title">{{ match.game }}</span></a></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-    {% endfor %}
+            {% endfor %}
 
 
         </div>
     </section>
     <!--End Banner Section -->
 
-	<!-- Welcome Section -->
-	<section class="welcome-section">
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title">Welcome to the Best</div>
-				<h2>Gaming & Esports</h2>
-			</div>
-			
-			<div class="row clearfix">
-				
-				<!--Default Portfolio Item-->
-				<div class="default-portfolio-item col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-					<div class="inner-box hvr-bob">
-						<figure class="image-box"><img src="{% static 'games/images/gallery/1.jpg' %}" alt=""></figure>
-						<!--Overlay Box-->
-						<div class="overlay-box">
-							<div class="overlay-inner">
-								<div class="content">
-									<h3><a href="#">Gaming <br> Studio</a></h3>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!--Default Portfolio Item-->
-				<div class="default-portfolio-item col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-					<div class="inner-box hvr-bob">
-						<figure class="image-box"><img src="{% static 'games/images/gallery/2.jpg' %}" alt=""></figure>
-						<!--Overlay Box-->
-						<div class="overlay-box">
-							<div class="overlay-inner">
-								<div class="content">
-									<h3><a href="#">Gaming <br> Studio</a></h3>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!--Default Portfolio Item-->
-				<div class="default-portfolio-item col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-					<div class="inner-box hvr-bob">
-						<figure class="image-box"><img src="{% static 'games/images/gallery/3.jpg' %}" alt=""></figure>
-						<!--Overlay Box-->
-						<div class="overlay-box">
-							<div class="overlay-inner">
-								<div class="content">
-									<h3><a href="#">Gaming <br> Studio</a></h3>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-			
-			<!-- Lower Box -->
-			<div class="lower-box">
-				<div class="text">There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</div>
-				<a href="about-clan.html" class="theme-btn btn-style-one"><span class="btn-title">About us</span></a>
-			</div>
-			
-		</div>
-	</section>
-	<!-- End Welcome Section -->
-	
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="auto-container">
+            <!-- Sec Title -->
+            <div class="sec-title centered">
+                <div class="title">Welcome to the Best 30 streams</div>
+                <h2>Gaming & Streams</h2>
+            </div>
 
-	<!-- Call To Action Section -->
-	<section class="facts-section">
-		<!-- Title Boxed -->
-		<div class="title-boxed" style="background-image:url({%  static 'games/images/background/5.jpg'%})">
-			<div class="auto-container">
-				<div class="content wow fadeInLeft" data-wow-delay="0ms">
-					<h2>Gamon WHERE DIGITAL <br> WORLDS MEET REAL <br> INNOVATION</h2>
-					<a href="contact.html" class="theme-btn btn-style-one"><span class="btn-title">view tournaments</span></a>
-				</div>
-			</div>
-		</div>
-		<!-- End Title Boxed -->
-		
-		<!-- Lower Boxed -->
-		<div class="lower-boxed">
-			<div class="auto-container">
-				<div class="row clearfix">
-					
-					<!-- Counter Column -->
-					<div class="counter-column col-lg-6 col-md-12 col-sm-12">
-						<div class="inner-column">
-							
-							<!-- Featured Block -->
-							<div class="featured-block">
-								<div class="inner-box">
-									<div class="icon-box">
-										<span class="icon flaticon-joystick"></span>
-									</div>
-									<h3>785,000</h3>
-									<div class="text">Games playerd by 6,388 people in 7 days</div>
-								</div>
-							</div>
-							
-							<!-- Featured Block -->
-							<div class="featured-block">
-								<div class="inner-box">
-									<div class="icon-box">
-										<span class="icon flaticon-man"></span>
-									</div>
-									<h3>63,000</h3>
-									<div class="text">Players are available to hit you live</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-					
-					<!-- Testimonial Column -->
-					<div class="testimonial-column col-lg-6 col-md-12 col-sm-12">
-						<div class="inner-column wow fadeInRight" data-wow-delay="0ms">
-							
-							<div class="single-item-carousel owl-carousel owl-theme">
-								
-								<!-- Testimonial Block -->
-								<div class="testimonial-block">
-									<div class="inner-box">
-										<div class="quote-icon flaticon-quote-1"></div>
-										<div class="text">Working with Gamon by bytes speed has been awesome. They care about the customer and add the personal feel to customer service. Our esports program has taken a huge step forward working with their help.</div>
-										<div class="author">- Mike Johnson, Jr</div>
-									</div>
-								</div>
-								
-								<!-- Testimonial Block -->
-								<div class="testimonial-block">
-									<div class="inner-box">
-										<div class="quote-icon flaticon-quote-1"></div>
-										<div class="text">Working with Gamon by bytes speed has been awesome. They care about the customer and add the personal feel to customer service. Our esports program has taken a huge step forward working with their help.</div>
-										<div class="author">- Mike Johnson, Jr</div>
-									</div>
-								</div>
-								
-								<!-- Testimonial Block -->
-								<div class="testimonial-block">
-									<div class="inner-box">
-										<div class="quote-icon flaticon-quote-1"></div>
-										<div class="text">Working with Gamon by bytes speed has been awesome. They care about the customer and add the personal feel to customer service. Our esports program has taken a huge step forward working with their help.</div>
-										<div class="author">- Mike Johnson, Jr</div>
-									</div>
-								</div>
-								
-							</div>
-							
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-	</section>
-	<!-- End Call To Action Section -->
+            <div class="row clearfix">
+
+                {% for game in twitch %}
+                    <!--Default Portfolio Item-->
+                    <div class="default-portfolio-item col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="0ms"
+                         data-wow-duration="1500ms">
+                        <div class="inner-box hvr-bob">
+                            <figure class="image-box"><img src="{{ game.photo }}" alt=""></figure>
+                            <!--Overlay Box-->
+                            <div class="overlay-box">
+                                <div class="overlay-inner">
+                                    <div class="content">
+                                        <h3><a href="{{ game.href }}">{{ game.game }}</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+
+            {% include 'inc_/pagination.html' %}
+
+
+            <!-- Lower Box -->
+            <div class="lower-box">
+                <div class="text">There are many variations of passages of lorem ipsum available, but the majority have
+                    suffered alteration in some form, by injected humour, or randomised words which don't look even
+                    slightly
+                    believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                    anything
+                    embarrassing hidden in the middle of text.
+                </div>
+                <a href="about-clan.html" class="theme-btn btn-style-one"><span class="btn-title">About us</span></a>
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <!-- End Welcome Section -->
+
+
+    <!-- Call To Action Section -->
+    <section class="facts-section">
+        <!-- Title Boxed -->
+        <div class="title-boxed" style="background-image:url({% static 'games/images/background/5.jpg' %})">
+            <div class="auto-container">
+                <div class="content wow fadeInLeft" data-wow-delay="0ms">
+                    <h2>Gamon WHERE DIGITAL <br> WORLDS MEET REAL <br> INNOVATION</h2>
+                    <a href="contact.html" class="theme-btn btn-style-one"><span
+                            class="btn-title">view tournaments</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- End Title Boxed -->
+
+        <!-- Lower Boxed -->
+        <div class="lower-boxed">
+            <div class="auto-container">
+                <div class="row clearfix">
+
+                    <!-- Counter Column -->
+                    <div class="counter-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column">
+
+                            <!-- Featured Block -->
+                            <div class="featured-block">
+                                <div class="inner-box">
+                                    <div class="icon-box">
+                                        <span class="icon flaticon-joystick"></span>
+                                    </div>
+                                    <h3>785,000</h3>
+                                    <div class="text">Games playerd by 6,388 people in 7 days</div>
+                                </div>
+                            </div>
+
+                            <!-- Featured Block -->
+                            <div class="featured-block">
+                                <div class="inner-box">
+                                    <div class="icon-box">
+                                        <span class="icon flaticon-man"></span>
+                                    </div>
+                                    <h3>63,000</h3>
+                                    <div class="text">Players are available to hit you live</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Column -->
+                    <div class="testimonial-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column wow fadeInRight" data-wow-delay="0ms">
+
+                            <div class="single-item-carousel owl-carousel owl-theme">
+
+                                <!-- Testimonial Block -->
+                                <div class="testimonial-block">
+                                    <div class="inner-box">
+                                        <div class="quote-icon flaticon-quote-1"></div>
+                                        <div class="text">Working with Gamon by bytes speed has been awesome. They care
+                                            about the customer and add the personal feel to customer service. Our
+                                            esports
+                                            program has taken a huge step forward working with their help.
+                                        </div>
+                                        <div class="author">- Mike Johnson, Jr</div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial Block -->
+                                <div class="testimonial-block">
+                                    <div class="inner-box">
+                                        <div class="quote-icon flaticon-quote-1"></div>
+                                        <div class="text">Working with Gamon by bytes speed has been awesome. They care
+                                            about the customer and add the personal feel to customer service. Our
+                                            esports
+                                            program has taken a huge step forward working with their help.
+                                        </div>
+                                        <div class="author">- Mike Johnson, Jr</div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial Block -->
+                                <div class="testimonial-block">
+                                    <div class="inner-box">
+                                        <div class="quote-icon flaticon-quote-1"></div>
+                                        <div class="text">Working with Gamon by bytes speed has been awesome. They care
+                                            about the customer and add the personal feel to customer service. Our
+                                            esports
+                                            program has taken a huge step forward working with their help.
+                                        </div>
+                                        <div class="author">- Mike Johnson, Jr</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
 
 
 {% endblock content %}

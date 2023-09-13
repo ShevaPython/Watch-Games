@@ -1,11 +1,12 @@
 from django.contrib import admin
 
-from .models import Genre, Game, Developer, Publisher, Peculiarities, Reviews, PremierMatches
+from .models import Genre, Game, Developer, Publisher, Peculiarities, Reviews, GameTop30TwitchStream
 
 
-@admin.register(PremierMatches)
-class PremierAdmin(admin.ModelAdmin):
+@admin.register(GameTop30TwitchStream)
+class GameTop100Admin(admin.ModelAdmin):
     pass
+
 
 
 @admin.register(Peculiarities)

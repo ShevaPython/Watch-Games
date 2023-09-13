@@ -63,7 +63,7 @@ class Game(models.Model):
     genres = models.ManyToManyField(Genre, verbose_name='жанры', related_name='game_genre')
     developer = models.ForeignKey(Developer, on_delete=models.SET_NULL, null=True, blank=True)
     publisher = models.ForeignKey(Publisher, on_delete=models.SET_NULL, null=True, blank=True)
-
+    data_create = models.CharField(max_length=100,verbose_name='Дата выхода',default='absent')
 
     def __str__(self):
         return self.name or ''
@@ -90,14 +90,12 @@ class Reviews(models.Model):
         verbose_name_plural = 'Отзывы'
 
 
-class PremierMatches(models.Model):
-    game = models.CharField(max_length=200, verbose_name='Название премьеры игры')
-    photo = models.TextField()
-    href_premier = models.TextField()
+class GameTop30TwitchStream(models.Model):
+    game = models.CharField(max_length=100, verbose_name='Название стрима')
+    href = models.TextField()
+    photo = models.TextField(db_index=True,
+                             default='https://w.forfun.com/fetch/f5/f53d0a93243e09cb47b41dac9d46a42e.jpeg')
+    premiermatches = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return F'{self.game}' or ""
-
-    class Meta:
-        verbose_name = 'Премьера матча'
-        verbose_name_plural = 'Премьеры матчей'
+        return F"{self.game}" or ""
