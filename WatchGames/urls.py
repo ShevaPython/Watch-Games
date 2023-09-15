@@ -26,7 +26,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/', include('games.api.urls')),
-    path('',include('games.urls'))
+    path('',include('games.urls')),
+    path('blog/',include('blog.urls'))
 
 ]
 

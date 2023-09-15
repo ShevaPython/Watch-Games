@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    My blog
+{% endblock title %}
+ <!--Page Title-->
+    <section class="page-banner" style="background-image:url({% static 'games/images/background/title-bg.jpg' %});">
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{% url 'games:index' %}">Home</a></li>
+                    <li>Blog</li>
+                </ul>
+                <h1>Blog</h1>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+{% block content %}
+
+
+    <!-- News Section -->
+	<section class="news-section style-two">
+		<div class="auto-container">
+			<div class="row clearfix">
+				<!-- News Block -->
+                {% for post in posts %}
+				<div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0ms">
+					<div class="inner-box hvr-bob">
+						<div class="image">
+							<a href="{% url 'blog:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<div class="post-date">{{ post.publish|date:"j F, Y"}}</div>
+							<h3><a href="{% url 'blog:post_detail' post.pk %}">Subject : {{ post.title}}</a></h3>
+                            <h3>Autor : {{ post.autor }}</h3>
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+				
+
+			</div>
+		</div>
+	</section>
+	<!-- End News Section -->
+	
+{% endblock content %}

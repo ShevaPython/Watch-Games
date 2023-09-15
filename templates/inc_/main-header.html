@@ -29,7 +29,7 @@
                 <div class="auto-container clearfix">
                     <!--Logo-->
                     <div class="logo-outer">
-                        <div class="logo"><a href="{% url 'index' %}"><img src="{% static 'games/images/logo.png' %}" alt="" title="Gamon - Digital Gaming and Esports HTML Template"></a></div>
+                        <div class="logo"><a href="{% url 'games:index' %}"><img src="{% static 'games/images/logo.png' %}" alt="" title="Gamon - Digital Gaming and Esports HTML Template"></a></div>
                     </div>
 
                     <!--Nav Box-->
@@ -41,12 +41,12 @@
                         <nav class="main-menu navbar-expand-md navbar-light">
                             <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                 <ul class="navigation clearfix pull-left">
-                                    <li class="current dropdown"><a href="{% url 'index' %}">Home</a>
+                                    <li class="current dropdown"><a href="{% url 'games:index' %}">Home</a>
 
                                     </li>
 									<li class="dropdown"><a href="#">Games</a>
                                         <ul>
-                                            <li><a href="{% url 'all_games' %}">All games</a></li>
+                                            <li><a href="{% url 'games:all_games' %}">All games</a></li>
 
                                             {% for ganre in genres %}
                                             <li><a href="#">{{ ganre.name }}</a></li>
@@ -58,11 +58,8 @@
                                 </ul>
 
                                 <ul class="navigation pull-right clearfix">
-                                    <li class="dropdown"><a href="blog.html">Blog</a>
-                                        <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul>
+                                    <li class="dropdown"><a href="{% url 'blog:post_list' %}">Blog</a>
+
                                     </li>
                                     <li><a href="contact.html">Contacts</a></li>
                                                          <li class="dropdown"><a href="matches.html">Register</a>
@@ -86,7 +83,7 @@
             <div class="auto-container clearfix">
                 <!--Logo-->
                 <div class="logo pull-left">
-                    <a href="{% url 'index' %}" title=""><img src="{% static 'games/images/logo.png' %}" alt="" title=""></a>
+                    <a href="{% url 'games:index' %}" title=""><img src="{% static 'games/images/logo.png' %}" alt="" title=""></a>
                 </div>
                 <!--Right Col-->
                 <div class="pull-right">
@@ -104,7 +101,7 @@
             <div class="close-btn"><span class="icon flaticon-close"></span></div>
 
             <nav class="menu-box">
-                <div class="nav-logo"><a href="{% url 'index' %}"><img src="{% static '/games/images/logo.png'%}" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="{% url 'games:index' %}"><img src="{% static '/games/images/logo.png'%}" alt="" title=""></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
 				<!--Social Links-->
 				<div class="social-links">

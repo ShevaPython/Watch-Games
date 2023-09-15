@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
+    """Теги поста"""
     title = models.CharField(max_length=100)
-    slag = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True)
 
     class Meta:
         verbose_name = 'Тег'
@@ -16,15 +17,22 @@ class Tag(models.Model):
         return F"{self.title}"
 
 
+class PublisherManager(models.Manager):
+    """Создания модельного мененджера"""
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
+
+
 class Post(models.Model):
+    """Посты"""
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
-
-    PUBLISHED = 'PB', 'Published'
+        PUBLISHED = 'PB', 'Published'
 
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique=True)
     body = models.TextField()
+    photo = models.ImageField(upload_to='blog/photos/%Y/%m/%d/', blank=True, verbose_name='Фото')
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -34,7 +42,10 @@ class Post(models.Model):
     autor = models.ForeignKey(User,
                               on_delete=models.CASCADE,
                               related_name='blog_posts')
-    tags = models.ManyToManyField('Tag', related_name='posts_tag', blank=True, verbose_name='URL тега')
+    tags = models.ManyToManyField(Tag, related_name='posts_tag', blank=True, verbose_name='URL тега')
+
+    objects = models.Manager()
+    published = PublisherManager()
 
     class Meta:
         ordering = ['-publish']
