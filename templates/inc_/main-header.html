@@ -44,13 +44,15 @@
                                     <li class="current dropdown"><a href="{% url 'index' %}">Home</a>
 
                                     </li>
-									<li class="dropdown"><a href="{% url 'all_games' %}">Games</a>
-{#                                        <ul>#}
-{#                                            <li><a href="about-clan.html">About Clan</a></li>#}
-{#                                            <li><a href="about-me.html">About Me</a></li>#}
-{#											<li><a href="games.html">Players</a></li>#}
-{#											<li><a href="faq.html">Faq's</a></li>#}
-{#                                        </ul>#}
+									<li class="dropdown"><a href="#">Games</a>
+                                        <ul>
+                                            <li><a href="{% url 'all_games' %}">All games</a></li>
+
+                                            {% for ganre in genres %}
+                                            <li><a href="#">{{ ganre.name }}</a></li>
+                                            {% endfor %}
+
+                                        </ul>
                                     </li>
                                     <li><a href="gallery.html">Gallery</a></li>
                                 </ul>

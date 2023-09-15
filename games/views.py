@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from .models import GameTop30TwitchStream,Game
+from .models import GameTop30TwitchStream,Game,Genre
 
 
 class IndexView(ListView):
@@ -16,6 +16,7 @@ class IndexView(ListView):
 
         # Добавляем premier_matches в контекст
         context['premier_matches'] = GameTop30TwitchStream.objects.exclude(premiermatches__isnull=True)
+        context['genres'] = Genre.objects.all()
 
         return context
 
@@ -24,7 +25,7 @@ class AllGamesView(ListView):
     model = Game
     template_name = 'games/games.html'
     context_object_name = 'games'
-    paginate_by = 9
+    paginate_by = 6
 
     def get_queryset(self):
         return Game.objects.order_by('name')
