@@ -28,11 +28,11 @@
 				<div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0ms">
 					<div class="inner-box hvr-bob">
 						<div class="image">
-							<a href="{% url 'blog:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt="" /></a>
+							<a href="{{ post.get_absolute_url }}"><img src="{{ post.photo.url }}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							<div class="post-date">{{ post.publish|date:"j F, Y"}}</div>
-							<h3><a href="{% url 'blog:post_detail' post.pk %}">Subject : {{ post.title}}</a></h3>
+							<h3><a href="{{ post.get_absolute_url }}">Subject : {{ post.title}}</a></h3>
                             <h3>Autor : {{ post.autor }}</h3>
 						</div>
 					</div>
@@ -43,6 +43,6 @@
 			</div>
 		</div>
 	</section>
-	<!-- End News Section -->
+{% include 'inc_/pagination.html' %}
 	
 {% endblock content %}
