@@ -26,6 +26,7 @@
 								<li>by <a href="{% url 'games:index' %}">Gamon</a></li>
 								<li><a href="#">2 Comments</a></li>
 								<li><a href="#">15 Likes</a></li>
+                                <li><a href="{% url 'blog:post_share' post.id %}">Share Post</a></li>
 							</ul>
 							<p>  {{ post.body }}</p>
                 		</div>
@@ -100,7 +101,7 @@
                     <aside class="sidebar">
                     	<!-- Search -->
                         <div class="sidebar-widget search-box">
-                            <form method="post" action="contact.html">
+                            <form method="post" action="share-post.html">
                                 <div class="form-group">
                                     <input type="search" name="search-field" value="" placeholder="Search" required>
                                     <button type="submit"><span class="icon fa fa-search"></span></button>
