@@ -18,7 +18,7 @@ class Tag(models.Model):
         return F"{self.title}"
 
 
-class PublisherManager(models.Manager):
+class PostManager(models.Manager):
     """Создания модельного мененджера"""
 
     def get_queryset(self):
@@ -48,7 +48,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name='posts_tag', blank=True, verbose_name='URL тега')
 
     objects = models.Manager()
-    published = PublisherManager()
+    published = PostManager()
 
     class Meta:
         ordering = ['-publish']
@@ -65,3 +65,36 @@ class Post(models.Model):
             self.publish.month,
             self.publish.day,
             self.slug])
+
+class CommendManager(models.Manager):
+    def queryset(self):
+
+        return super().queryset().filter(status=Commend.Status.PUBLISHED)
+class Commend(models.Model):
+    """ Creat model commend"""
+
+    class Status(models.IntegerChoices):
+        DRAFT = 0, 'NO ACTIVE'
+        PUBLISHED = 1, 'ACTIVE'
+
+    post = models.ForeignKey(Post,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(choices=Status.choices, default=Status.PUBLISHED)
+    objects = models.Manager()
+    published = CommendManager()
+
+    class Meta:
+        verbose_name = 'Клментарий'
+        verbose_name_plural = 'Коментарии'
+        ordering = ['-created']
+        indexes = [
+            models.Index(fields=['created']),
+        ]
+    def __str__(self):
+        return F"Comment by {self.name} on {self.post}"

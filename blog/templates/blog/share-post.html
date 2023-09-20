@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 
-
+{% block title %}
+    Share a post
+{% endblock title %}
 {% block content %}
-    <!-- Contact Form Section -->
+    {% if sent %}
+        <div>
+    <h1>E-mail successfully sent</h1>
+    <p>
+        "{{ post.title }}" was successfully sent
+        to {{ form.cleaned_data.recipient_email }}.
+    </p>
+        </div>
+    {% else %}
     <section class="contact-form-section style-two">
         <div class="auto-container">
             <div class="row clearfix">
@@ -33,7 +43,7 @@
                             <form method="post">
                                 {% csrf_token %}
                                 {% for f in form %}
-                               {{ f.label_tag}}
+                                    {{ f.label_tag }}
                                     {{ f }}
                                 {% endfor %}
                                 <button class="theme-btn btn-style-one" type="submit" name="submit-form"><span
@@ -47,28 +57,8 @@
             </div>
         </div>
     </section>
-    <!-- End Contact Form Section -->
+{% endif %}
 
 
-    <!--Map Section-->
-    <section class="map-section">
-        <div class="auto-container">
-            <!--Map Outer-->
-            <div class="map-outer">
-                <!--Map Canvas-->
-                <div class="map-canvas"
-                     data-zoom="12"
-                     data-lat="-37.817085"
-                     data-lng="144.955631"
-                     data-type="roadmap"
-                     data-hue="#ffc400"
-                     data-title="Envato"
-                     data-icon-path="images/icons/map-marker.png"
-                     data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End Map Section-->
 
 {% endblock content %}
