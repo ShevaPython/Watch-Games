@@ -1,0 +1,19 @@
+                    <!--Comment Form-->
+                    <div class="comment-form">
+                        <div class="group-title"><h3>Leave a comment</h3></div>
+
+                        <form method="post" action="{% url 'blog:post_comment' post.id %}">
+                            <div class="row clearfix">
+                                {% csrf_token %}
+                                {% for f in form %}
+                                <div class="col-md-6 col-sm-12 form-group">
+                                    {{ f.label_tag }}{{ f }}
+                                </div>
+
+                                 {% endfor %}
+                                <div class="col-md-12 col-sm-12 form-group">
+                                    <button class="theme-btn btn-style-one" type="submit" name="submit-form"><span class="btn-title">Post Comment</span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>

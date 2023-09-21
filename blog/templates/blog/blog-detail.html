@@ -5,7 +5,7 @@
 {% endblock title %}
 {% block content %}
 
-        <!--Sidebar Page Container-->
+    <!--Sidebar Page Container-->
     <div class="sidebar-page-container">
         <div class="auto-container">
             <div class="row clearfix">
@@ -15,91 +15,85 @@
                 <div class="content-side col-lg-8 col-md-12 col-sm-12">
 
                     <div class="blog-detail">
-                		<div class="image-box">
-                			<figure class="image"><img src="{{ post.photo.url }}" alt=""></figure>
-                		</div>
-                		<div class="lower-content">
-                			<div class="post-date">{{ post.publish|date:"j F ,Y" }}</div>
+                        <div class="image-box">
+                            <figure class="image"><img src="{{ post.photo.url }}" alt=""></figure>
+                        </div>
+                        <div class="lower-content">
+                            <div class="post-date">{{ post.publish|date:"j F ,Y" }}</div>
 
-							<h3>{{ post.title }}</h3>
-							<ul class="post-info">
-								<li>by <a href="{% url 'games:index' %}">Gamon</a></li>
-								<li><a href="#">2 Comments</a></li>
-								<li><a href="#">15 Likes</a></li>
+                            <h3>{{ post.title }}</h3>
+                            <ul class="post-info">
+                                <li>by <a href="{% url 'games:index' %}">Gamon</a></li>
+                                {% with comments.count as total_comments %}
+                                    <li><a href="#">{{ total_comments }} comment{{ total_comments|pluralize }}</a></li>
+                                {% endwith %}
+
+                                <li><a href="#">15 Likes</a></li>
                                 <li><a href="{% url 'blog:post_share' post.id %}">Share Post</a></li>
-							</ul>
-							<p>  {{ post.body }}</p>
-                		</div>
-                    </div>
-
-
-
-
-                    <!-- Author Box -->
-                    <div class="author-box">
-                        <div class="inner-box">
-                            <figure class="thumb"><img src="../../games/static/games/images/resource/author-thumb.jpg" alt=""></figure>
-                            <h3 class="name">Christine Eve</h3>
-                            <div class="text">Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae dicta sunt explica lltes port lacus quis enim var sed turpis gilla sed.</div>
+                            </ul>
+                            <p>  {{ post.body }}</p>
                         </div>
                     </div>
+
+
+                    {##}
+                    {#                    <!-- Author Box -->#}
+                    {#                    <div class="author-box">#}
+                    {#                        <div class="inner-box">#}
+                    {#                            <figure class="thumb"><img src="../../games/static/games/images/resource/author-thumb.jpg" alt=""></figure>#}
+                    {#                            <h3 class="name">Christine Eve</h3>#}
+                    {#                            <div class="text">Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae dicta sunt explica lltes port lacus quis enim var sed turpis gilla sed.</div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
 
                     <!-- Comments Area -->
                     <div class="comments-area">
-                        <div class="group-title"><h3>2 Comments</h3></div>
+                        <div class="group-title"><h3> Comment</h3></div>
+
                         <div class="comment-box">
-                            <div class="comment">
-                                <div class="author-thumb">
-                                    <figure class="thumb"><img src="../../games/static/games/images/resource/thumb-1.jpg" alt=""></figure>
-                                </div> 
-                                <h4 class="name">Kevin Martin</h4>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo var sed efficitur turpis gilla sed sit amet finibus eros.</div>
-                                <a href="#" class="reply-btn">Reply</a>
-                            </div>
+                            {% for comment in comments %}
+                                <div class="comment">
+
+                                    <div class="author-thumb">
+                                        <figure class="thumb"><img
+                                                src="../../games/static/games/images/resource/thumb-1.jpg" alt="">
+                                        </figure>
+                                    </div>
+                                    <h4 class="name">Comment {{ forloop.counter }} by {{ comment.name }}</h4>
+
+                                    <div class="text">{{ comment.body|linebreaks }}
+                                        <p>Data create : {{ comment.created }}</p>
+
+
+                                    </div>
+                                    <a href="#" class="reply-btn">Reply</a>
+                                </div>
+                                 <div></div>
+                            {% empty %}
+                                <p>There are no comments.</p>
+                            {% endfor %}
                         </div>
+
 
                         <div class="comment-box reply-comment">
-                            <div class="comment">
-                                <div class="author-thumb">
-                                    <figure class="thumb"><img src="../../games/static/games/images/resource/thumb-2.jpg" alt=""></figure>
-                                </div> 
-                                <h4 class="name">Sarah Albert</h4>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo var sed efficitur turpis gilla sed sit amet finibus eros.</div>
-                                <a href="#" class="reply-btn">Reply</a>
-                            </div>
+                            {#                            <div class="comment">#}
+                            {#                                <div class="author-thumb">#}
+                            {#                                    <figure class="thumb"><img src="../../games/static/games/images/resource/thumb-2.jpg" alt=""></figure>#}
+                            {#                                </div>#}
+                            {#                                <h4 class="name">Sarah Albert</h4>#}
+                            {#                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo var sed efficitur turpis gilla sed sit amet finibus eros.</div>#}
+                            {#                                <a href="#" class="reply-btn">Reply</a>#}
+                            {#                            </div>#}
                         </div>
                     </div>
 
-                    <!--Comment Form-->
-                    <div class="comment-form">
-                        <div class="group-title"><h3>Leave a comment</h3></div>
-
-                        <form method="post" action="blog-list.html">
-                            <div class="row clearfix">                                    
-                                <div class="col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="Full name" required="">
-                                </div>
-                                
-                                <div class="col-md-6 col-sm-12 form-group">
-                                    <input type="email" name="email" placeholder="Email address" required="">
-                                </div>
-
-                                <div class="col-md-12 col-sm-12 form-group">
-                                    <textarea name="message" placeholder="Write a comment"></textarea>
-                                </div>
-
-                                <div class="col-md-12 col-sm-12 form-group">
-                                    <button class="theme-btn btn-style-one" type="submit" name="submit-form"><span class="btn-title">Post Comment</span></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    {% include 'blog/incl_/comment_form.html' %}
                 </div>
 
                 <!--Sidebar Side-->
                 <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
                     <aside class="sidebar">
-                    	<!-- Search -->
+                        <!-- Search -->
                         <div class="sidebar-widget search-box">
                             <form method="post" action="share-post.html">
                                 <div class="form-group">
@@ -115,26 +109,35 @@
                                 <h4 class="sidebar-title">Recent Posts</h4>
                                 <article class="post">
                                     <div class="post-inner">
-                                        <figure class="post-thumb"><a href="blog-detail.html"><img src="../../games/static/games/images/resource/post-thumb-1.jpg" alt=""></a></figure>
+                                        <figure class="post-thumb"><a href="blog-detail.html"><img
+                                                src="../../games/static/games/images/resource/post-thumb-1.jpg" alt=""></a>
+                                        </figure>
                                         <div class="post-info">16 May 2019</div>
-                                        <div class="text"><a href="blog-detail.html">Lion king vs wolf smart upcoming matches</a></div>
+                                        <div class="text"><a href="blog-detail.html">Lion king vs wolf smart upcoming
+                                            matches</a></div>
                                     </div>
 
                                 </article>
-                                
+
                                 <article class="post">
                                     <div class="post-inner">
-                                        <figure class="post-thumb"><a href="blog-detail.html"><img src="../../games/static/games/images/resource/post-thumb-2.jpg" alt=""></a></figure>
+                                        <figure class="post-thumb"><a href="blog-detail.html"><img
+                                                src="../../games/static/games/images/resource/post-thumb-2.jpg" alt=""></a>
+                                        </figure>
                                         <div class="post-info">11 May 2019</div>
-                                        <div class="text"><a href="blog-detail.html">How to become a register user on gamon</a></div>
+                                        <div class="text"><a href="blog-detail.html">How to become a register user on
+                                            gamon</a></div>
                                     </div>
                                 </article>
 
                                 <article class="post">
                                     <div class="post-inner">
-                                        <figure class="post-thumb"><a href="blog-detail.html"><img src="../../games/static/games/images/resource/post-thumb-3.jpg" alt=""></a></figure>
+                                        <figure class="post-thumb"><a href="blog-detail.html"><img
+                                                src="../../games/static/games/images/resource/post-thumb-3.jpg" alt=""></a>
+                                        </figure>
                                         <div class="post-info">10 May 2019</div>
-                                        <div class="text"><a href="blog-detail.html">Last matches champions advices for</a></div>
+                                        <div class="text"><a href="blog-detail.html">Last matches champions advices
+                                            for</a></div>
                                     </div>
                                 </article>
                             </div>
@@ -167,7 +170,7 @@
                                     <li><a href="blog-detail.html">Champions</a></li>
                                 </ul>
                             </div>
-                        </div>           
+                        </div>
                     </aside>
                 </div>
             </div>

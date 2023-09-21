@@ -18,3 +18,11 @@ class CommendForm(forms.ModelForm):
     class Meta:
         model = Commend
         fields = ['name', 'email', 'body']
+        widgets = {
+            'name': forms.TextInput(
+                attrs={'placeholder': 'Username', 'required': True}),
+            'email': forms.EmailInput(
+                attrs={ 'placeholder': 'Email', 'required': True}),
+            'body': forms.Textarea(
+                attrs={'placeholder': 'Comment', 'required': True}),
+        }
