@@ -2,21 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-
-
-class Tag(models.Model):
-    """Теги поста"""
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-
-    class Meta:
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'
-        ordering = ['title']
-
-    def __str__(self):
-        return F"{self.title}"
-
+from taggit.managers import TaggableManager
 
 class PostManager(models.Manager):
     """Создания модельного мененджера"""
@@ -45,7 +31,7 @@ class Post(models.Model):
     autor = models.ForeignKey(User,
                               on_delete=models.CASCADE,
                               related_name='blog_posts')
-    tags = models.ManyToManyField(Tag, related_name='posts_tag', blank=True, verbose_name='URL тега')
+    tags = TaggableManager()
 
     objects = models.Manager()
     published = PostManager()

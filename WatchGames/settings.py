@@ -14,7 +14,7 @@ from pathlib import Path
 
 from django.conf import settings
 
-from config import SECRET_KEY,GMAIL,GMAIL_PASSWORD
+from config import SECRET_KEY, GMAIL, GMAIL_PASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework.authtoken',
     'drf_yasg',
-
+    'taggit',
 
 ]
 
