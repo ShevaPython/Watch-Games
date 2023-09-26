@@ -46,6 +46,7 @@
                                         {% if not forloop.last %}, {% endif %}
                                     {% endfor %}
                                 </p>
+                            Body:{{ post.body|markdown|truncatewords_html:15 }}
                             </div>
                         </div>
                     </div>

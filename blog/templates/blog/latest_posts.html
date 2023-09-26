@@ -1,0 +1,16 @@
+
+{% for post in latest_posts%}
+    <article class="post">
+        <div class="post-inner">
+            <figure class="post-thumb"><a href="{{ post.get_absolute_url }}"><img
+                    src="{{ post.photo.url }}" alt=""></a>
+            </figure>
+            <div class="post-info">{{ post.created }}</div>
+            <div class="text"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </div>
+        </div>
+        {% empty %}
+        There are no latest posts
+    </article>
+    <br>
+{% endfor %}

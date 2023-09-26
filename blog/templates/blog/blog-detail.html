@@ -32,7 +32,7 @@
                                 <li><a href="#">15 Likes</a></li>
                                 <li><a href="{% url 'blog:post_share' post.id %}">Share Post</a></li>
                             </ul>
-                            <p>  {{ post.body }}</p>
+                            <p>  {{ post.body|markdown}}</p>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                                     </div>
                                     <a href="#" class="reply-btn">Reply</a>
                                 </div>
-                                 <div></div>
+                                <div></div>
                             {% empty %}
                                 <p>There are no comments.</p>
                             {% endfor %}
@@ -107,19 +107,20 @@
                         <!-- Post Widget -->
                         <div class="sidebar-widget popular-posts">
                             <div class="widget-content">
-                                <h4 class="sidebar-title">Recent Posts</h4>
+                                <h4 class="sidebar-title">Similar Posts</h4>
                                 {% for post in similar_posts %}
-                                <article class="post">
-                                    <div class="post-inner">
-                                        <figure class="post-thumb"><a href="{{ post.get_absolute_url }}"><img
-                                                src="{{ post.photo.url }}" alt=""></a>
-                                        </figure>
-                                        <div class="post-info">{{ post.created}}</div>
-                                        <div class="text"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></div>
-                                    </div>
-                                {% empty %}
-                                There are no similar posts yet.
-                                </article>
+                                    <article class="post">
+                                        <div class="post-inner">
+                                            <figure class="post-thumb"><a href="{{ post.get_absolute_url }}"><img
+                                                    src="{{ post.photo.url }}" alt=""></a>
+                                            </figure>
+                                            <div class="post-info">{{ post.created }}</div>
+                                            <div class="text"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                            </div>
+                                        </div>
+                                        {% empty %}
+                                        There are no similar posts yet.
+                                    </article>
                                 {% endfor %}
 
                             </div>
@@ -129,32 +130,19 @@
                         <div class="sidebar-widget popular-tags">
                             <div class="widget-content">
                                 <h4 class="sidebar-title">Popular tags</h4>
-                            {% post_tags_all as tags %}
+                                {% post_tags_all as tags %}
                                 {% for tag in tags %}
-                                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag.name }}</a>
+                                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag.name }}</a>
                                 {% endfor %}
 
                             </div>
                         </div>
 
                         <!-- Category Widget -->
-                                    <div class="sidebar-widget popular-posts">
+                        <div class="sidebar-widget popular-posts">
                             <div class="widget-content">
-                                <h4 class="sidebar-title">Recent Posts</h4>
-                                {% for post in similar_posts %}
-                                <article class="post">
-                                    <div class="post-inner">
-                                        <figure class="post-thumb"><a href="{{ post.get_absolute_url }}"><img
-                                                src="{{ post.photo.url }}" alt=""></a>
-                                        </figure>
-                                        <div class="post-info">{{ post.created}}</div>
-                                        <div class="text"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></div>
-                                    </div>
-                                {% empty %}
-                                There are no similar posts yet.
-                                </article>
-                                {% endfor %}
-
+                                <h4 class="sidebar-title">Latest Posts</h4>
+                                {% show_latest_posts 3 %}
                             </div>
                         </div>
                     </aside>
