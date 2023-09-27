@@ -95,14 +95,7 @@
                 <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
                     <aside class="sidebar">
                         <!-- Search -->
-                        <div class="sidebar-widget search-box">
-                            <form method="post" action="share-post.html">
-                                <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search" required>
-                                    <button type="submit"><span class="icon fa fa-search"></span></button>
-                                </div>
-                            </form>
-                        </div>
+                       {% include 'blog/incl_/search_form.html' %}
 
                         <!-- Post Widget -->
                         <div class="sidebar-widget popular-posts">

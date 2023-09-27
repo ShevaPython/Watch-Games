@@ -1,0 +1,10 @@
+<div class="sidebar-widget search-box">
+    <form method="get" action="{% url 'blog:post_search' %}">
+        <div class="form-group">
+            {% for field in search_form %}
+                {{ field }}{{ f.label_tag }}
+            {% endfor %}
+            <button type="submit"><span class="icon fa fa-search"></span></button>
+        </div>
+    </form>
+</div>

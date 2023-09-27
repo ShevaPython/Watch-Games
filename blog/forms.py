@@ -22,7 +22,11 @@ class CommendForm(forms.ModelForm):
             'name': forms.TextInput(
                 attrs={'placeholder': 'Username', 'required': True}),
             'email': forms.EmailInput(
-                attrs={ 'placeholder': 'Email', 'required': True}),
+                attrs={'placeholder': 'Email', 'required': True}),
             'body': forms.Textarea(
                 attrs={'placeholder': 'Comment', 'required': True}),
         }
+
+ # <input type="search" name="query" value="" placeholder="Search" required>
+class SearchForm(forms.Form):
+    query = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'placeholder':'Search','required':True}))
