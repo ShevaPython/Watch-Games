@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from account.models import CustomUser
 from django.urls import reverse
 from taggit.managers import TaggableManager
 
@@ -28,7 +28,7 @@ class Post(models.Model):
     status = models.CharField(max_length=2,
                               choices=Status.choices,
                               default=Status.DRAFT)
-    autor = models.ForeignKey(User,
+    autor = models.ForeignKey(CustomUser,
                               on_delete=models.CASCADE,
                               related_name='blog_posts')
     tags = TaggableManager()

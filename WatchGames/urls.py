@@ -18,7 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from games.yasg import  urlpatterns as doc_urls
+from games.yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +27,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('api/', include('games.api.urls')),
     path('',include('games.urls')),
-    path('blog/',include('blog.urls'))
+    path('blog/',include('blog.urls')),
+    path('account/', include('account.urls')),
 
 ]
 
