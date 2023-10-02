@@ -166,7 +166,7 @@ EMAIL_HOST_PASSWORD = GMAIL_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 AUTH_USER_MODEL = 'account.CustomUser'
 LOGIN_REDIRECT_URL = reverse_lazy('account:profile')

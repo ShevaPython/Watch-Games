@@ -63,17 +63,17 @@
                                     </li>
                                     <li><a href="contact.html">Contacts</a></li>
                                     {% if request.user.is_authenticated %}
-                                              <li class="dropdown"><a href="{% url 'account:profile' %}">My profile</a>
+                                              <li class="dropdown"><a href="{% url 'account:profile' %}">My profile-{{ request.user.first_name|default:request.user.username }}</a>
                                         <ul>
                                             <li><a href="{% url 'account:logout' %}">Logout</a></li>
 
                                         </ul>
                                     </li>
                                     {% else %}
-                                    <li class="dropdown"><a href="{% url 'account:register' %}">Register</a>
+                                    <li class="dropdown"><a href="{% url 'account:login' %}">Register</a>
                                         <ul>
                                             <li><a href="{% url 'account:login' %}">Login</a></li>
-                                            <li><a href="{% url 'account:register' %}">Register</a></li>
+                                            <li><a href="{% url 'account:login' %}">Register</a></li>
                                         </ul>
                                     </li>
                                     {% endif %}
