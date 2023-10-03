@@ -22,16 +22,17 @@ from games.yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/',include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/', include('games.api.urls')),
-    path('',include('games.urls')),
-    path('blog/',include('blog.urls')),
+    path('', include('games.urls')),
+    path('blog/', include('blog.urls')),
     path('account/', include('account.urls')),
 
 ]
 
 urlpatterns += doc_urls
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

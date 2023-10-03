@@ -138,8 +138,8 @@ STATICFILES_DIRS = [STATIC_DIR]
 # ...
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Используйте правильный путь к BigAutoField
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -166,9 +166,12 @@ EMAIL_HOST_PASSWORD = GMAIL_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
-
 AUTH_USER_MODEL = 'account.CustomUser'
 LOGIN_REDIRECT_URL = reverse_lazy('account:profile')
 LOGIN_URL = reverse_lazy('account:login')
 LOGOUT_URL = reverse_lazy('account:logout')
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+]
