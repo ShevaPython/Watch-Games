@@ -27,8 +27,11 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('api/', include('games.api.urls')),
     path('', include('games.urls')),
-    path('blog/', include('blog.urls')),
-    path('account/', include('account.urls')),
+    path('blog/', include('blog.urls', namespace='blog')),
+    path('account/', include('account.urls', namespace='account')),
+    path('social-auth/',
+         include('social_django.urls', namespace='social')),
+    path('images/', include('images.urls', namespace='images'))
 
 ]
 

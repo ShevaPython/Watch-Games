@@ -20,3 +20,6 @@ class EmailAuthBackend:
             return CustomUser.objects.get(pk=user_id)
         except CustomUser.DoesNotExist:
             return None
+
+
+

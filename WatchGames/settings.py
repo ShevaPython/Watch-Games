@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 
 from django.conf import settings
 
-from config import SECRET_KEY, GMAIL, GMAIL_PASSWORD, DB_NAME, DB_PASSWORD, DB_USER, DB_HOST
+from config import SECRET_KEY, GMAIL, GMAIL_PASSWORD, DB_NAME, DB_PASSWORD, DB_USER, DB_HOST,SOCIAL_AUTH_GOOGLE_KEY,SOCIAL_AUTH_GOOGLE_SECRET
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +29,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['mysite.com', '0.0.0.0', 'localhost', '127.0.0.1', '127.0.0.1:8000']
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'blog.apps.BlogConfig',
     'games.apps.GamesConfig',
+    'images.apps.ImagesConfig',
 
     'rest_framework',
     'djoser',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'taggit',
     'django_extensions',
     'django.contrib.postgres',
+    'social_django',
 
 ]
 
@@ -174,4 +176,19 @@ LOGOUT_URL = reverse_lazy('account:logout')
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social_core.backends.google.GoogleOAuth2',
 ]
+SOCIAL_AUTH_PIPELINE = [
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL_AUTH_GOOGLE_KEY  # ИД клиента Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL_AUTH_GOOGLE_SECRET  # Секрет клиента Google
