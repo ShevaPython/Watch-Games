@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}{% endblock %}</title>204
-    Разработка социального веб-сайта
+    <title>{% block title %}{% endblock %}</title>
     <link href="{% static "account/css/base.css" %}" rel="stylesheet">
 </head>
 <body>
@@ -43,6 +42,7 @@
 {% endif %}
 <div id="content">
     {% block content %}
+
     {% endblock %}
 </div>
 </body>

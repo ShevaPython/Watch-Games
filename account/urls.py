@@ -40,5 +40,5 @@ urlpatterns = [
 
     path('update_profile/', views.update_custom_user, name='update_profile'),
 
-    path('profile/', views.profile_view, name='profile'),
+    path('', views.profile_view, name='profile'),
 ]
