@@ -15,7 +15,8 @@ from django.urls import reverse_lazy
 
 from django.conf import settings
 
-from config import SECRET_KEY, GMAIL, GMAIL_PASSWORD, DB_NAME, DB_PASSWORD, DB_USER, DB_HOST,SOCIAL_AUTH_GOOGLE_KEY,SOCIAL_AUTH_GOOGLE_SECRET
+from config import SECRET_KEY, GMAIL, GMAIL_PASSWORD, DB_NAME, DB_PASSWORD, DB_USER, DB_HOST, SOCIAL_AUTH_GOOGLE_KEY, \
+    SOCIAL_AUTH_GOOGLE_SECRET
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.postgres',
     'social_django',
+    'easy_thumbnails',
 
 ]
 
@@ -192,3 +194,9 @@ SOCIAL_AUTH_PIPELINE = [
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL_AUTH_GOOGLE_KEY  # ИД клиента Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL_AUTH_GOOGLE_SECRET  # Секрет клиента Google
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'image_thumbnail': {'size': (300, 300), 'crop': True},
+    },
+}

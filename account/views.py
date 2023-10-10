@@ -63,4 +63,4 @@ def update_custom_user(request):
 
 @login_required
 def profile_view(request):
-    return render(request, 'account/profile.html')
+    return render(request, 'account/profile.html',{'section': 'images'})
