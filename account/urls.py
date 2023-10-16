@@ -37,8 +37,10 @@ urlpatterns = [
     ),
     # register url
     path('register/', views.register, name='register'),
-
     path('update_profile/', views.update_custom_user, name='update_profile'),
-
     path('', views.profile_view, name='profile'),
+
+    # users url
+    path("users/", views.user_list, name='user_list'),
+    path("users/<username>/", views.user_detail, name='user_detail'),
 ]
