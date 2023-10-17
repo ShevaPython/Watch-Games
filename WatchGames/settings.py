@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'games.apps.GamesConfig',
     'images.apps.ImagesConfig',
+    'actions.apps.ActionsConfig',
 
     'rest_framework',
     'djoser',
