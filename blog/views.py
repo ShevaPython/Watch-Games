@@ -19,7 +19,7 @@ from taggit.models import Tag
 
 def post_list(request, tag_slug=None):
     """Список всех постов"""
-    post_list = Post.published.all()
+    post_list = Post.published.filter(status='PB').values('id', 'title', 'slug', 'status', 'publish', 'created', 'updated')
     tag = None
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
@@ -37,6 +37,7 @@ def post_list(request, tag_slug=None):
         # Если page_number находится вне диапазона, то
         # выдать последнюю страницу результатов
         posts = paginator.page(paginator.num_pages)
+
     return render(request,
                   'blog/blog-list.html',
                   {'posts': posts,

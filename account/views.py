@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetConfirmView, \
     PasswordResetView
 from django.views.decorators.http import require_POST
+from django.db.models import Prefetch
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -70,21 +71,26 @@ def update_custom_user(request):
     return render(request, 'account/update_profile.html', {'user_form': user_form})
 
 
+
 @login_required
 def profile_view(request):
-    """index profileview"""
     # По умолчанию показать все действия
-    actions = Action.objects.exclude(user=request.user)
-    following_ids = request.user.following.values_list('id',
-                                                       flat=True)
+    actions = Action.objects.exclude(user=request.user).select_related('user')
+    following_ids = request.user.following.values_list('id', flat=True)
     if following_ids:
         # Если пользователь подписан на других,
         # то извлечь только их действия
         actions = actions.filter(user_id__in=following_ids)
+
+    # Оптимизация запроса для связанных данных
     actions = actions[:10]
-    print(actions)
-    return render(request, 'account/profile.html', {'section': 'dashboard',
-                                                    'actions':actions})
+
+    # Оптимизация запроса для связанных данных о подписках
+    actions = actions.prefetch_related(
+        Prefetch('user__following', queryset=Contact.objects.filter(user_from=request.user), to_attr='followers')
+    )
+
+    return render(request, 'account/profile.html', {'section': 'dashboard', 'actions': actions})
 
 
 @login_required
