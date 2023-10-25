@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'games.apps.GamesConfig',
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
+    'shop.apps.ShopConfig',
 
     'rest_framework',
     'djoser',
