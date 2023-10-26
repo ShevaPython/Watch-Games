@@ -4,7 +4,7 @@
 
 //** Dec 12th, 08" (v1.01): Fixed Shadow issue when multiple LIs within the same UL (level) contain sub menus: http://www.dynamicdrive.com/forums/showthread.php?t=39177&highlight=smooth
 
-//** Feb 11th, 09" (v1.02): The currently active main menu item (LI A) now gets a CSS class of ".selected", including sub menu items.
+//** Feb 11th, 09" (v1.02): The currently active product menu item (LI A) now gets a CSS class of ".selected", including sub menu items.
 
 //** May 1st, 09" (v1.3):
 //** 1) Now supports vertical (side bar) menu mode- set "orientation" to 'v'
@@ -45,7 +45,7 @@ getajaxmenu:function($, setting){ //function to fetch external page containing t
 
 buildmenu:function($, setting){
 	var smoothmenu=ddsmoothmenu
-	var $mainmenu=$("#"+setting.mainmenuid+">ul") //reference main menu UL
+	var $mainmenu=$("#"+setting.mainmenuid+">ul") //reference product menu UL
 	$mainmenu.parent().get(0).className=setting.classname || "ddsmoothmenu"
 	var $headers=$mainmenu.find("ul").parent()
 	$headers.hover(

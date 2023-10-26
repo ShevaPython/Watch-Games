@@ -568,7 +568,7 @@
             // Build html markup and set references
             // ====================================
 
-            // Build html code for buttons and insert into main templates
+            // Build html code for buttons and insert into product templates
             buttonStr = '';
 
             $.each( firstItemOpts.buttons, function( index, value ) {

@@ -12,11 +12,11 @@
 	
 	//Update Header Style and Scroll to Top
 	function headerStyle() {
-		if($('.main-header').length){
+		if($('.product-header').length){
 			var windowpos = $(window).scrollTop();
-			var siteHeader = $('.main-header');
+			var siteHeader = $('.product-header');
 			var scrollLink = $('.scroll-to-top');
-			var sticky_header = $('.main-header .sticky-header');
+			var sticky_header = $('.product-header .sticky-header');
 			if (windowpos > 100) {
 				siteHeader.addClass('fixed-header');
 				sticky_header.addClass("animated slideInDown");
@@ -32,8 +32,8 @@
 	headerStyle();
 
 	//Submenu Dropdown Toggle
-	if($('.main-header li.dropdown ul').length){
-		$('.main-header .navigation li.dropdown').append('<div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>');
+	if($('.product-header li.dropdown ul').length){
+		$('.product-header .navigation li.dropdown').append('<div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>');
 		
 	}
 
@@ -42,9 +42,9 @@
 		
 		$('.mobile-menu .menu-box').mCustomScrollbar();
 		
-		var mobileMenuContent = $('.main-header .nav-outer .main-menu').html();
+		var mobileMenuContent = $('.product-header .nav-outer .product-menu').html();
 		$('.mobile-menu .menu-box .menu-outer').append(mobileMenuContent);
-		$('.sticky-header .main-menu').append(mobileMenuContent);
+		$('.sticky-header .product-menu').append(mobileMenuContent);
 		
 		//Dropdown Button
 		$('.mobile-menu li.dropdown .dropdown-btn').on('click', function() {

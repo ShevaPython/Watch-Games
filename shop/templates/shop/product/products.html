@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Web Store - Checkout</title>
+<title>Web Store - Products</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <!-- templatemo 341 web store -->
@@ -42,6 +42,29 @@ function clearText(field)
 }
 </script>
 
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<script language="javascript" type="text/javascript" src="scripts/mootools-1.2.1-core.js"></script>
+<script language="javascript" type="text/javascript" src="scripts/mootools-1.2-more.js"></script>
+<script language="javascript" type="text/javascript" src="scripts/slideitmoo-1.1.js"></script>
+<script language="javascript" type="text/javascript">
+	window.addEvents({
+		'domready': function(){
+			/* thumbnails example , div containers */
+			new SlideItMoo({
+						overallContainer: 'SlideItMoo_outer',
+						elementScrolled: 'SlideItMoo_inner',
+						thumbsContainer: 'SlideItMoo_items',		
+						itemsVisible: 5,
+						elemsSlide: 2,
+						duration: 200,
+						itemsSelector: '.SlideItMoo_element',
+						itemWidth: 171,
+						showControls:1});
+		},
+		
+	});
+</script>
+
 </head>
 
 <body id="subpage">
@@ -71,8 +94,8 @@ function clearText(field)
     
     <div id="templatemo_menu" class="ddsmoothmenu">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a>
+            <li><a href="list_products.html">Home</a></li>
+            <li><a href="products.html" class="selected">Products</a>
                 <ul>
                     <li><a href="#">Sub menu 1</a></li>
                     <li><a href="#">Sub menu 2</a></li>
@@ -89,15 +112,53 @@ function clearText(field)
               </ul>
             </li>
             <li><a href="faqs.html">FAQs</a></li>
-            <li><a href="checkout.html" class="selected">Checkout</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
+    
     <div class="cleaner h20"></div>
     <div id="templatemo_main_top"></div>
     <div id="templatemo_main">
-    	
+    	<div id="product_slider">
+    		<div id="SlideItMoo_outer">	
+                <div id="SlideItMoo_inner">			
+                    <div id="SlideItMoo_items">
+                        <div class="SlideItMoo_element">
+                                <a href="#1" target="_parent">
+                                <img src="images/gallery/01.jpg" alt="product 1" /></a>
+                        </div>	
+                        <div class="SlideItMoo_element">
+                                <a href="#2" target="_parent">
+                                <img src="images/gallery/02.jpg" alt="product 1" /></a>
+                        </div>
+                        <div class="SlideItMoo_element">
+                                <a href="#3" target="_parent">
+                                 <img src="images/gallery/03.jpg" alt="product 1" /></a>
+                        </div>
+                        <div class="SlideItMoo_element">
+                                <a href="#4" target="_parent">
+                                <img src="images/gallery/04.jpg" alt="product 1" /></a>
+                        </div>
+                        <div class="SlideItMoo_element">
+                                <a href="#5" target="_parent">
+                               <img src="images/gallery/05.jpg" alt="product 1" /></a>
+                        </div>
+                        <div class="SlideItMoo_element">
+                                <a href="#6" target="_parent">
+                                <img src="images/gallery/06.jpg" alt="product 1" /></a>
+                        </div>
+                        <div class="SlideItMoo_element">
+                                <a href="#7" target="_parent">
+                                <img src="images/gallery/07.jpg" alt="product 1" /></a>
+                        </div>
+                    </div>			
+                </div>
+            </div>
+            <div class="cleaner"></div>
+        </div>
+        
         <div id="sidebar">
         	<h3>Categories</h3>
             <ul class="sidebar_menu">
@@ -124,49 +185,74 @@ function clearText(field)
                 <div class="cleaner"></div>
             </div>
         </div> <!-- END of sidebar -->
-       
+        
         <div id="content">
-       		<h2>Checkout</h2>
-            <h5><strong>BILLING DETAILS</strong></h5>
-            <div class="col col_13 checkout">
-				Enter your full name as it is on the credit card:                				<input type="text"  style="width:300px;"  />
-                Address:
-                <input type="text"  style="width:300px;"  />
-                City:
-                <input type="text"  style="width:300px;"  />
-                Country:
-                <input type="text"  style="width:300px;"  />
+        	<h2>Etiam In Tellus</h2>
+        	<div class="col col_14 product_gallery">
+            	<a href="productdetail.html"><img src="images/product/01.jpg" alt="Product 01" /></a>
+                <h3>Ut eu feugiat</h3>
+                <p class="product_price">$ 100</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>        	
+            <div class="col col_14 product_gallery">
+            	<a href="productdetail.html"><img src="images/product/02.jpg" alt="Product 02" /></a>
+                <h3>Curabitur et turpis</h3>
+                <p class="product_price">$ 200</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>        	
+            <div class="col col_14 product_gallery no_margin_right">
+            	<a href="productdetail.html"><img src="images/product/03.jpg" alt="Product 03" /></a>
+                <h3>Mauris consectetur</h3>
+                <p class="product_price">$ 120</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
             </div>
+            <a href="#" class="more float_r">View all</a>
+			<div class="cleaner h50"></div>
             
-            <div class="col col_13 checkout">
-            	E-MAIL
-				<input type="text"  style="width:300px;"  />
-                PHONE<br />
-				<span style="font-size:10px">Please, specify your reachable phone number. YOU MAY BE GIVEN A CALL TO VERIFY AND COMPLETE THE ORDER.</span>
-                <input type="text"  style="width:300px;"  />
-            </div>
-            
+            <h2>Hendrerit Justo</h2>
+            <div class="col col_14 product_gallery">
+            	<a href="productdetail.html"><img src="images/product/04.jpg" alt="Product 04" /></a>
+                <h3>Proin volutpat</h3>
+                <p class="product_price">$ 260</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>        	
+            <div class="col col_14 product_gallery">
+            	<a href="productdetail.html"><img src="images/product/05.jpg" alt="Product 05" /></a>
+                <h3>Aenean tempus</h3>
+                <p class="product_price">$ 80</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>        	
+            <div class="col col_14 product_gallery no_margin_right">
+            	<a href="productdetail.html"><img src="images/product/06.jpg" alt="Product 06" /></a>
+                <h3>Nulla luctus urna</h3>
+                <p class="product_price">$ 193</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>     	
+            <a href="#" class="more float_r">View all</a>
             <div class="cleaner h50"></div>
-            <h3>Shopping Cart</h3>
-            <h4>TOTAL: <strong>$140</strong></h4>
-			<p><input type="checkbox" />I have accepted the <a href="#">Terms of Use</a>.</p>
-            <table style="border:1px solid #CCCCCC;" width="100%">
-                <tr>
-                    <td height="80px"> <img src="images/paypal.gif" alt="paypal" /></td>
-                    <td width="400px;" style="padding: 0px 20px;">Recommended if you have a PayPal account. Fastest delivery time.
-                    </td>
-                    <td><a href="#" class="more">PAYPAL</a></td>
-                </tr>
-                <tr>
-                    <td  height="80px"><img src="images/2co.gif" alt="paypal" />
-                    </td>
-                    <td  width="400px;" style="padding: 0px 20px;">2Checkout.com, Inc. is an authorized retailer of goods and services provided by Template-Guide.com. 2CheckOut accepts customer orders via online checks, Visa, MasterCard, Discover, American Express, Diners, JCB and debit cards with the Visa, Mastercard logo.
-                    </td>
-                    <td><a href="#" class="more">2CHECKOUT</a></td>
-                </tr>
-            </table>
-               
-		</div>
+            
+            <h2>Maecenas A Diam</h2>
+            <div class="col col_14 product_gallery">
+            	<a href="productdetail.html"><img src="images/product/07.jpg" alt="Product 07" /></a>
+                <h3>Pellentesque egestas</h3>
+                <p class="product_price">$ 30</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>        	
+            <div class="col col_14 product_gallery">
+            	<a href="productdetail.html"><img src="images/product/08.jpg" alt="Product 08" /></a>
+                <h3>Suspendisse porttitor</h3>
+                <p class="product_price">$ 220</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>        	
+            <div class="col col_14 product_gallery no_margin_right">
+            	<a href="productdetail.html"><img src="images/product/09.jpg" alt="Product 09" /></a>
+                <h3>Nam vehicula</h3>
+                <p class="product_price">$ 65</p>
+                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+            </div>
+            <a href="#" class="more float_r">View all</a>
+            <div class="cleaner"></div>
+        </div> <!-- END of content -->
         <div class="cleaner"></div>
     </div> <!-- END of main -->
     
@@ -214,7 +300,7 @@ function clearText(field)
         
         <div class="cleaner h40"></div>
 		<center>
-			Copyright © 2048 Your Company Name <!-- Credit: www.templatemo.com -->
+			Copyright © 2048 Your Company Name
 		</center>
     </div> <!-- END of footer -->   
    
