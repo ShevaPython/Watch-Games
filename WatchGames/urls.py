@@ -33,6 +33,7 @@ urlpatterns = [
          include('social_django.urls', namespace='social')),
     path('images/', include('images.urls', namespace='images')),
     path('shop/',include('shop.url',namespace='shop')),
+    path('cart/',include('cart.urls',namespace='cart')),
     path('__debug__/', include('debug_toolbar.urls')),
 
 ]

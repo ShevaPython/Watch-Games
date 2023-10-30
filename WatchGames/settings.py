@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
 
     'rest_framework',
     'djoser',
@@ -214,3 +215,6 @@ INTERNAL_IPS = [
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 0
+
+#Session Cart
+CART_SESSION_ID = 'cart'

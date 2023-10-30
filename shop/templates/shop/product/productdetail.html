@@ -44,7 +44,7 @@
         <div id="content">
             <h2>Product Details</h2>
             <div class="col col_13">
-                <a rel="lightbox[portfolio]" href="images/product/10_l.jpg" title="Lady Shoes"><img
+                <a rel="lightbox[portfolio]" title="Lady Shoes"><img
                         src="{{ product.image.url }}" alt="{{ product.name }}"/></a>
             </div>
             <div class="col col_13 no_margin_right">
@@ -62,13 +62,15 @@
                         <td height="30">Manufacturer:</td>
                         <td>Apple</td>
                     </tr>
-                    <tr>
-                        <td height="30">Quantity</td>
-                        <td><input type="text" value="1" style="width: 20px; text-align: right"/></td>
-                    </tr>
+
                 </table>
                 <div class="cleaner h20"></div>
-                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+                <form  class="add_to_cart" action="{% url "cart:cart_add" product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" style="background-color: green; color: white;">
+
+                </form>
             </div>
             <div class="cleaner h30"></div>
 
@@ -83,19 +85,19 @@
                 <a href="productdetail.html"><img src="images/product/01.jpg" alt="Product 01"/></a>
                 <h3>Ut eu feugiat</h3>
                 <p class="product_price">$ 100</p>
-                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+                <a href="../../../../cart/templates/cart/detail.html" class="add_to_cart">Add to Cart</a>
             </div>
             <div class="col col_14 product_gallery">
                 <a href="productdetail.html"><img src="images/product/02.jpg" alt="Product 02"/></a>
                 <h3>Curabitur et turpis</h3>
                 <p class="product_price">$ 200</p>
-                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+                <a href="../../../../cart/templates/cart/detail.html" class="add_to_cart">Add to Cart</a>
             </div>
             <div class="col col_14 product_gallery no_margin_right">
                 <a href="productdetail.html"><img src="images/product/03.jpg" alt="Product 03"/></a>
                 <h3>Mauris consectetur</h3>
                 <p class="product_price">$ 120</p>
-                <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+                <a href="../../../../cart/templates/cart/detail.html" class="add_to_cart">Add to Cart</a>
             </div>
             <a href="#" class="more float_r">View all</a>
 
