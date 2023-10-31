@@ -8,89 +8,96 @@
     <div id="templatemo_main_top"></div>
     <div id="templatemo_main">
 
-    <div id="sidebar">
-        <h3>Categories</h3>
-        <ul class="sidebar_menu">
-            <li><a href="#">Aenean et dolor diam</a></li>
-            <li><a href="#">Aenean pulvinar</a></li>
-            <li><a href="#">Cras bibendum auctor</a></li>
-            <li><a href="#">Donec sodales bibendum</a></li>
-            <li><a href="#">Etiam in tellus</a></li>
-            <li><a href="#">Hendrerit justo</a></li>
-            <li><a href="#">Integer interdum</a></li>
-            <li><a href="#">Maecenas a diam</a></li>
-            <li><a href="#">Nullam in semper</a></li>
-            <li><a href="#">Posuere in commodo</a></li>
-            <li><a href="#">Tincidunt leo</a></li>
-            <li><a href="#">Vestibulum blandit</a></li>
-        </ul>
-        <h3>Newsletter</h3>
-        <p>Praesent aliquam mi id tellus pretium pulvinar in vel ligula.</p>
-        <div id="newsletter">
-            <form action="#" method="get">
-                <input type="text" value="Subscribe" name="email_newsletter" id="email_newsletter"
-                       title="email_newsletter" onfocus="clearText(this)" onblur="clearText(this)"
-                       class="txt_field"/>
-                <input type="submit" name="subscribe" value="Subscribe" alt="Subscribe" id="subscribebtn"
-                       title="Subscribe" class="subscribebtn"/>
-            </form>
-            <div class="cleaner"></div>
-        </div>
-    </div> <!-- END of sidebar -->
+        <div id="sidebar">
+            <h3>Categories</h3>
+            <ul class="sidebar_menu">
+                <li><a href="#">Aenean et dolor diam</a></li>
+                <li><a href="#">Aenean pulvinar</a></li>
+                <li><a href="#">Cras bibendum auctor</a></li>
+                <li><a href="#">Donec sodales bibendum</a></li>
+                <li><a href="#">Etiam in tellus</a></li>
+                <li><a href="#">Hendrerit justo</a></li>
+                <li><a href="#">Integer interdum</a></li>
+                <li><a href="#">Maecenas a diam</a></li>
+                <li><a href="#">Nullam in semper</a></li>
+                <li><a href="#">Posuere in commodo</a></li>
+                <li><a href="#">Tincidunt leo</a></li>
+                <li><a href="#">Vestibulum blandit</a></li>
+            </ul>
+            <h3>Newsletter</h3>
+            <p>Praesent aliquam mi id tellus pretium pulvinar in vel ligula.</p>
+            <div id="newsletter">
+                <form action="#" method="get">
+                    <input type="text" value="Subscribe" name="email_newsletter" id="email_newsletter"
+                           title="email_newsletter" onfocus="clearText(this)" onblur="clearText(this)"
+                           class="txt_field"/>
+                    <input type="submit" name="subscribe" value="Subscribe" alt="Subscribe" id="subscribebtn"
+                           title="Subscribe" class="subscribebtn"/>
+                </form>
+                <div class="cleaner"></div>
+            </div>
+        </div> <!-- END of sidebar -->
 
-    <div id="content">
+        <div id="content">
 
-    <h1>Your shopping cart</h1>
-    <table class="cart">
-        <thead>
-        <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-            <th>Unit price</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in cart %}
-            {% with product=item.product %}
+            <h1>Your shopping cart</h1>
+            <table class="cart">
+                <thead>
                 <tr>
-                    <td>
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{{ product.image.url }}">
-                        </a>
-                    </td>
-                   <td>{{ product.name|truncatewords:3 }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>
-                        <form action="{% url "cart:cart_remove" product.id %}"
-                              method="post">
-                            <input type="submit" value="Remove">
-                            {% csrf_token %}
-                        </form>
-                    </td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                    <th>Unit price</th>
+                    <th>Price</th>
                 </tr>
-            {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td>Total</td>
-            <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right">
-        <a href="{% url "shop:product_list" %}" class="button
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    {% with product=item.product %}
+                        <tr>
+                            <td>
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.image.url }}">
+                                </a>
+                            </td>
+                            <td>{{ product.name|truncatewords:3 }}</td>
+                            <td>
+                                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.override }}
+                                    <input type="submit" value="Update">
+                                    {% csrf_token %}
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{% url "cart:cart_remove" product.id %}"
+                                      method="post">
+                                    <input type="submit" value="Remove">
+                                    {% csrf_token %}
+                                </form>
+                            </td>
+                            <td class="num">${{ item.price }}</td>
+                            <td class="num">${{ item.total_price }}</td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr class="total">
+                    <td>Total</td>
+                    <td colspan="4"></td>
+                    <td class="num">${{ cart.get_total_price }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="text-right">
+                <a href="{% url "shop:product_list" %}" class="button
 light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
-    </p>
+                <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
+            </p>
 
 
-</div>
-<div class="cleaner"></div>
-</div> <!-- END of main -->
+        </div>
+        <div class="cleaner"></div>
+    </div> <!-- END of main -->
 
 {% endblock content %}

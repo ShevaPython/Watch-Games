@@ -76,7 +76,7 @@
 
 </head>
 {% block class_body %}
-<body id="home">
+    <body id="home">
 {% endblock class_body %}
 <div id="templatemo_wrapper">
     <div id="templatemo_header">
@@ -114,7 +114,15 @@
             </li>
             <li><a href="faqs.html">FAQs</a></li>
             <li><a href="checkout.html">Checkout</a></li>
-            <li><a href="contact.html">Cart:Your cart is empty.</a></li>
+            <li>{% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                    <a href="{% url "cart:cart_detail" %}">
+                          Your cart: {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
+                    </a>
+                {% else %}
+                    Your cart is empty.
+                {% endif %}
+            {% endwith %}</li>
         </ul>
         <br style="clear: left"/>
     </div> <!-- end of templatemo_menu -->

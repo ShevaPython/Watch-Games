@@ -26,14 +26,19 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/', include('games.api.urls')),
+    # index main
     path('', include('games.urls')),
     path('blog/', include('blog.urls', namespace='blog')),
+    # auth
     path('account/', include('account.urls', namespace='account')),
     path('social-auth/',
          include('social_django.urls', namespace='social')),
+    # images
     path('images/', include('images.urls', namespace='images')),
-    path('shop/',include('shop.url',namespace='shop')),
-    path('cart/',include('cart.urls',namespace='cart')),
+    # shop
+    path('shop/', include('shop.url', namespace='shop')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('__debug__/', include('debug_toolbar.urls')),
 
 ]
