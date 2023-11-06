@@ -51,7 +51,7 @@ urlpatterns += doc_urls
 if settings.DEBUG:
     import mimetypes
 
-    mimetypes.add_type('application/javascript', '.js', True)
+    mimetypes.add_type('webhooks/javascript', '.js', True)
     mimetypes.add_type('text/css', '.css', True)
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
