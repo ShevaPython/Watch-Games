@@ -16,7 +16,7 @@ from django.urls import reverse_lazy
 from django.conf import settings
 
 from config import SECRET_KEY, GMAIL, GMAIL_PASSWORD, DB_NAME, DB_PASSWORD, DB_USER, DB_HOST, SOCIAL_AUTH_GOOGLE_KEY, \
-    SOCIAL_AUTH_GOOGLE_SECRET
+    SOCIAL_AUTH_GOOGLE_SECRET,STRIP_SECRET_KEY,STRIP_PUBLISHABLE_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 
     'rest_framework',
     'djoser',
@@ -220,3 +221,9 @@ REDIS_DB = 0
 
 #Session Cart
 CART_SESSION_ID = 'cart'
+
+# Настроечные параметры Stripe
+STRIPE_PUBLISHABLE_KEY = STRIP_PUBLISHABLE_KEY
+STRIPE_SECRET_KEY = STRIP_SECRET_KEY
+# Секретный ключ
+STRIPE_API_VERSION = '2022-08-01'

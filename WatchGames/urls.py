@@ -36,9 +36,13 @@ urlpatterns = [
     # images
     path('images/', include('images.urls', namespace='images')),
     # shop
+    path('payment/', include('payment.urls', namespace='payment')),
     path('shop/', include('shop.url', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
+
+
+    #debug_toolbar
     path('__debug__/', include('debug_toolbar.urls')),
 
 ]
