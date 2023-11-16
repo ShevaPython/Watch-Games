@@ -1,11 +1,40 @@
 version: '3.5'
 
 services:
-  django-api-watchgames:
+  web:
     build: .
+    command: [ "./wait-for-it.sh", "db:5432", "--",
+               "python", "/WatchGames/manage.py", "runserver",
+               "0.0.0.0:8000" ]
     container_name: django-project
+    volumes:
+      - .:/WatchGames
     ports:
       - '8000:8000'
-    restart: unless-stopped
+    restart: always
     env_file:
       - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=WatchGames.settings.prod
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:14.5
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+
+  redis:
+    image: redis:7.0.4
+    restart: always
+    volumes:
+      - ./data/cache:/data
